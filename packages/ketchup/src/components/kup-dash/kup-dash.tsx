@@ -6,26 +6,39 @@ import { Component, Event, EventEmitter, Prop, h } from '@stencil/core';
     shadow: true,
 })
 export class KupDash {
-    @Prop()
-    layout = '1';
-
-    @Prop()
-    fontsize = '';
-
-    @Prop()
+    /**
+     * Sets whether the component is clickable or not.
+     */
+    @Prop({ reflect: true })
     active = false;
 
+    /**
+     * Set the font size of the component.
+     */
+    @Prop({ reflect: true })
+    layout = '1';
+
+    /**
+     * Select the layout of the component. 8 layouts available.
+     */
+    @Prop({ reflect: true })
+    fontSize = '';
+
     @Event({
-        eventName: 'ketchupDashClicked',
+        eventName: 'kupDashClick',
         composed: true,
         cancelable: true,
         bubbles: true,
     })
-    ketchupDashClicked: EventEmitter<{}>;
+    kupClick: EventEmitter<{}>;
 
-    onDshClickedHandler() {
-        this.ketchupDashClicked.emit();
+    //---- Methods ----
+
+    onKupClick() {
+        this.kupClick.emit();
     }
+
+    //---- Lifecycle hooks ----
 
     render() {
         let content = null;
@@ -182,14 +195,14 @@ export class KupDash {
                 );
                 break;
         }
-        const style = { fontSize: this.fontsize };
+        const style = { fontSize: this.fontSize };
 
         return (
             <div
                 id="dash"
                 class={`${this.active ? 'with-dyn' : ''}`}
                 style={style}
-                onClick={() => this.onDshClickedHandler()}
+                onClick={() => this.onKupClick()}
             >
                 <div id="content" class={`layout-${this.layout} `}>
                     {content}

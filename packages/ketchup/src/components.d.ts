@@ -462,8 +462,17 @@ export namespace Components {
     'sections': FormSection;
   }
   interface KupDash {
+    /**
+    * Sets whether the component is clickable or not.
+    */
     'active': boolean;
-    'fontsize': string;
+    /**
+    * Select the layout of the component. 8 layouts available.
+    */
+    'fontSize': string;
+    /**
+    * Set the font size of the component.
+    */
     'layout': string;
   }
   interface KupDataTable {
@@ -2045,10 +2054,19 @@ declare namespace LocalJSX {
     'sections'?: FormSection;
   }
   interface KupDash extends JSXBase.HTMLAttributes<HTMLKupDashElement> {
+    /**
+    * Sets whether the component is clickable or not.
+    */
     'active'?: boolean;
-    'fontsize'?: string;
+    /**
+    * Select the layout of the component. 8 layouts available.
+    */
+    'fontSize'?: string;
+    /**
+    * Set the font size of the component.
+    */
     'layout'?: string;
-    'onKetchupDashClicked'?: (event: CustomEvent<{}>) => void;
+    'onKupDashClick'?: (event: CustomEvent<{}>) => void;
   }
   interface KupDataTable extends JSXBase.HTMLAttributes<HTMLKupDataTableElement> {
     /**
