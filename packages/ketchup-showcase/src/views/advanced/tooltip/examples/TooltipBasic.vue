@@ -1,8 +1,15 @@
 <template>
-  <div id="kup-tooltip">    
-    <h3>Layout 1 (default layout) <span id="action-confirm-label" v-text="labelText" v-if="labelText !== ''"></span></h3>    
-    <div id="layout1">      
-      <kup-tooltip        
+  <div id="kup-tooltip">
+    <h3>
+      Layout 1 (default layout)
+      <span
+        id="action-confirm-label"
+        v-text="labelText"
+        v-if="labelText !== ''"
+      ></span>
+    </h3>
+    <div id="layout1">
+      <kup-tooltip
         @kupTooltipLoadData="onLoadData($event, 1)"
         @kupTooltipLoadDetail="loadBornToDie"
         @kupActionCommandClicked="actionCommandClicked"
@@ -28,8 +35,8 @@
 
       <kup-tooltip @kupTooltipLoadData="onLoadData($event, 4)" @kupTooltipLoadDetail="loadLust">
         <img :src="images.lust" width="64" height="64" />
-      </kup-tooltip>      
-    </div>    
+      </kup-tooltip>
+    </div>
 
     <h3>Layout 2</h3>
     <div id="layout2">
@@ -46,7 +53,7 @@
         layout="2"
         @kupTooltipLoadData="onLoadData($event, 2)"
         @kupTooltipLoadDetail="loadUltraviolence"
-        @kupActionCommandClicked="actionCommandClicked"       
+        @kupActionCommandClicked="actionCommandClicked"
       >
         <img :src="images.ultra" width="64" height="64" />
       </kup-tooltip>
@@ -108,20 +115,7 @@
         <img :src="images.lust" width="64" height="64" />
       </kup-tooltip>
     </div>
-
-
-    <div class="tooltip-perf">
-      <kup-tooltip
-        v-for="index in 10000"
-        :key="index"
-        @kupTooltipLoadData="onLoadData($event, 1)"
-        @kupTooltipLoadDetail="loadBornToDie"
-      >
-        <p>{{ index }}</p>
-      </kup-tooltip>
-    </div>
   </div>
-
 </template>
 
 <script>
@@ -137,9 +131,9 @@ export default {
   data() {
     return {
       images: {
-        ...imageUrls
+        ...imageUrls,
       },
-      labelText: ''
+      labelText: '',
     };
   },
 
@@ -236,10 +230,12 @@ export default {
       setTimeout(() => (event.target.detailData = lustForLife), 250);
     },
 
-    actionCommandClicked(event) {      
-      var message = "Hai premuto il bottone a cui è associata l'esecuzione dell'azione: " + JSON.stringify(event.detail.actionCommand.exec);      
-      this.labelText = message;      
-    }
+    actionCommandClicked(event) {
+      var message =
+        "Hai premuto il bottone a cui è associata l'esecuzione dell'azione: " +
+        JSON.stringify(event.detail.actionCommand.exec);
+      this.labelText = message;
+    },
   },
 };
 </script>
@@ -256,17 +252,7 @@ kup-tooltip h4 {
   margin: 0;
 }
 
-.tooltip-perf {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.tooltip-perf kup-tooltip {
-  margin: 0px 3px;
-}
-
 #action-confirm-label {
   font-size: 80%;
 }
-
 </style>
